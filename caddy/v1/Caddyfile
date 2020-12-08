@@ -1,0 +1,11 @@
+https://bugs.revi.xyz {
+    root /var/www/phab/phabricator/webroot
+    rewrite {
+                if {path} is /
+                to /index.php?__path__=/
+        }
+    rewrite  {
+        to {path} {path}/ /index.php?__path__={path_escaped}&{query}
+    }
+    fastcgi / /var/run/php7.3-fpm.sock php
+}
